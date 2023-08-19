@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Performance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: whitesmoke;
+            color: dimgray; /* Set default text color */
+        }
+
+        /* Center the header */
+        header {
+            text-align: center;
+        }
+
+        /* Add padding to the paragraph and center it in a 4:3 ratio */
+        p {
+            text-align: justify; /* Justify text to create a cleaner look */
+            max-width: 75%;
+            margin: 0 auto 20px;
+            color: lightslategray; /* Lighter text color */
+            letter-spacing: 1px; /* Add letter spacing */
+            line-height: 1.6; /* Adjust line height for more space between lines */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #ccc; /* Add a border around the images */
+            padding: 5px; /* Add some padding to the images */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Performance of the Model</h1>
+    </header>
+    <p>The coverage of a partition is the ratio of the number of intra-community edges to the total number of edges in the graph. Modularity compares the number of edges inside a cluster with the expected number of edges that one would find in the cluster if the network were a random network with the same number of nodes and where each node keeps its degree, but edges are otherwise randomly attached. The performance of a partition is the ratio of the number of intra-community edges plus inter-community non-edges with the total number of potential edges.</p>
+    <img src="{{ url_for('static', filename='output.png') }}" alt="Performance Chart">
+    <p>while the community commodity graph of all the purchases appears like this</p>
+    <img src="{{ url_for('static', filename='output1.png') }}" alt="Performance Chart">
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: lightgray;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        h1 {
+            color:whitesmoke;
+            width: 100%;
+        }
+
+        .contact-badge {
+            margin: 20px 20px;
+            display: inline-block; /* Display badges side by side */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Here</h1>
+        <div class="contact-badge">
+            <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="monish-arikatla-b2a677234" data-version="v1">
+                <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/monish-arikatla-b2a677234?trk=profile-badge"></a>
+            </div>
+        </div>
+        <div class="contact-badge">
+            <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="sai-chandra-bandaru-202712220" data-version="v1">
+                <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/sai-chandra-bandaru-202712220?trk=profile-badge"></a>
+            </div>
+        </div>
+        <div class="contact-badge">
+            <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="abhinav-gadaraju-8306a7225" data-version="v1">
+                <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/abhinav-gadaraju-8306a7225?trk=profile-badge"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the background image using JavaScript
+        window.onload = function() {
+            const bodyElement = document.querySelector('body');
+            bodyElement.style.backgroundImage = "url('{{ url_for('static', filename='contact1.jpg') }}')";
+        };
+    </script>
+</body>
+</html>

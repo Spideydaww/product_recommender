@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: lightgray;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .form-container,
+        .recommendations-container,
+        .performance-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+        }
+
+        p {
+            color: #555555;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"],
+        button {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            background-color: white;
+            color: #333333;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 60%;
+            border-radius: 4px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0072ff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: whitesmoke;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            color: white;
+            border-radius: 8px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: dodgerblue;
+            color: white;
+        }
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-weight: bold;
+            display: inline-block; /* Add this to make the links appear as buttons */
+            padding: 10px 20px; /* Add padding to make the buttons larger */
+            background-color: dodgerblue;
+            border-radius: 4px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0072ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='header.png') }}" alt="Productrecommender">
+        <nav>
+           
+            <a href="about.html" target="_blank">About The Project</a>
+            <a href="contact.html" target="_blank">Contact</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Get Product Recommendations</h2>
+            <form onsubmit="handleFormSubmit(event)">
+                <label for="basket">Product name:</label>
+                <select id="basket" name="basket">
+                    <option value="">-- Select Product --</option>
+                    <option value="BLUE POLKADOT BOWL">BLUE POLKADOT BOWL</option>
+                    <option value="CHERRY BLOSSOM PASSPORT COVER">CHERRY BLOSSOM PASSPORT COVER</option>
+                    <option value="12 PENCIL SMALL TUBE WOODLAND">12 PENCIL SMALL TUBE WOODLAND</option>
+                    <option value="PEACE SMALL WOOD LETTERS">PEACE SMALL WOOD LETTERS</option>
+                    <option value="ASSORTED TUTTI FRUTTI MIRROR">ASSORTED TUTTI FRUTTI MIRROR</option>
+                    <option value="WOOD AND GLASS MEDICINE CABINET">WOOD AND GLASS MEDICINE CABINET</option>
+                    <option value="PARTY CONES CARNIVAL ASSORTED">PARTY CONES CARNIVAL ASSORTED</option>
+                </select>
+                <br>
+                <label for="customBasket">Or enter a custom product name:</label>
+                <input type="text" id="customBasket" name="customBasket">
+                <br>
+                <label for="numRecommendations">Number of Recommendations:</label>
+                <input type="number" id="numRecommendations" name="numRecommendations" min="1" required>
+                <br>
+                <center><button type="submit">Get Recommendations</button></center>
+            </form>
+        </div>
+        <div class="recommendations-container">
+            <h2>Recommendations:</h2>
+            <ul id="recommendations"></ul>
+        </div>
+    </div>
+    <div class="performance-container">
+        <h2><center>Performance of the Model</center></h2>
+        <p></p>
+        <center><button type="button" onclick="openPerformancePage()">View Performance</button></center>
+    </div>
+    <div class="footer">
+        &copy; CVR COLLEGE OF ENGINEERING 2023
+    </div>
+    <script>
+        function openPerformancePage() {
+            window.open("performance.html", "_blank");
+        }
+
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the selected value from the dropdown or the custom input value
+            var basket = document.getElementById("basket").value || document.getElementById("customBasket").value;
+            var numRecommendations = document.getElementById("numRecommendations").value;
+
+            // Create a data object to send in the request body
+            var data = {
+                basket: basket,
+                numRecommendations: numRecommendations
+            };
+
+            // Send a POST request to the Flask route
+            fetch("/", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the recommendations on the page
+                var recommendationsDiv = document.getElementById("recommendations");
+                recommendationsDiv.innerHTML = ""; // Clear previous recommendations
+
+                data.recommendations.forEach(function (recommendation) {
+                    var recommendationItem = document.createElement("li");
+                    recommendationItem.textContent = recommendation;
+                    recommendationsDiv.appendChild(recommendationItem);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

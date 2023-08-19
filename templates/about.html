@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About the project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: whitesmoke;
+            color: dimgray; /* Set default text color */
+        }
+
+        /* Center the header */
+        header {
+            text-align: center;
+        }
+
+        /* Add padding to the paragraph and center it in a 4:3 ratio */
+        p {
+            text-align: center;
+            padding: 0 30%; /* Add 30% padding on both sides */
+            color: lightslategray; /* Lighter text color */
+            letter-spacing: 1px; /* Add letter spacing */
+            line-height: 1.6; /* Adjust line height for more space between lines */
+        }
+
+        .parallax-wrapper {
+            height: 400px; /* Set the height of the parallax section */
+            overflow: hidden; /* Hide any overflowing content */
+        }
+
+        .parallax-image {
+            width: 100%;
+            height: auto;
+            transform: translate3d(0, 0, 0); /* Enable hardware acceleration for smoother animation */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>About The Project</h1>
+        <div class="parallax-wrapper">
+            <img src="{{ url_for('static', filename='site1.jpg') }}" alt="siteimg" class="parallax-image">
+        </div>
+    </header>
+    <script>
+        window.addEventListener("scroll", function () {
+            const parallaxImage = document.querySelector(".parallax-image");
+            let scrollPosition = window.pageYOffset;
+
+            parallaxImage.style.transform = `translate3d(0, ${scrollPosition * 0.4}px, 0)`;
+        });
+    </script>
+    <p>
+        A product recommendation engine is essentially a software that records an users' 
+        actions on e-commerce websites and analyzes the data obtained to make product suggestions 
+        that might interest the user. This can enhance the customer experience and even boost sales 
+        of the e-commerce website that makes use of it. Community detection can be used to identify 
+        products that are most likely to be bought together, thereby facilitating a product recommendation 
+        engine. Here communities will be formed on the basis of the information obtained from user purchase patterns.
+    </p>
+
+    <div class="parallax-wrapper">
+        <img src="{{ url_for('static', filename='site2.jpg') }}" alt="siteimg" class="parallax-image">
+    </div>
+<p>The following project is an implementation of the working of e-commerce giants around the world to boost thier income and provide services according to conumser interrst the imbubemnet of machine learning algorithims in product sales has done its part</p>
+  
+</body>
+</html>
